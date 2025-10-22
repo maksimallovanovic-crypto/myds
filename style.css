@@ -15,6 +15,25 @@ body {
     border-radius: 10px;
 }
 
+.voice-rooms button {
+    margin: 5px;
+    padding: 10px 20px;
+    background: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.voice-rooms button:hover {
+    background: #666;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
 button {
     margin: 10px;
     padding: 10px 20px;
@@ -23,10 +42,6 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-button:hover {
-    background: #666;
 }
 
 .mic-status {
