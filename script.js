@@ -1,8 +1,10 @@
-// Обработчик подключения WebRTC
-document.getElementById('connectBtn').addEventListener('click', () => {
-    alert('Попытка подключения через WebRTC...');
-    // Реализация WebRTC требует сложной сигнализации и сервера
-});
+// Хранение соединений
+const connections = {};
+
+// Обработчики голосовых комнат
+document.getElementById('voice1').addEventListener('click', () => connectToRoom('voice1'));
+document.getElementById('voice2').addEventListener('click', () => connectToRoom('voice2'));
+document.getElementById('voice3').addEventListener('click', () => connectToRoom('voice3'));
 
 // Управление наушниками
 let isMuted = false;
@@ -26,3 +28,26 @@ document.getElementById('micToggle').addEventListener('click', async () => {
         }
     }
 });
+
+// Функция подключения к комнате
+function connectToRoom(roomId) {
+    // Создаем новое соединение
+    connections[roomId] = new RTCPeerConnection();
+    
+    // Добавляем локальный поток (если есть)
+    if (micActive) {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                stream.getAudioTracks().forEach(track => connections[roomId].addTrack(track, stream));
+            });
+    }
+    
+    // Пример создания offer (в реальном случае нужен сервер сигнализации)
+    connections[roomId].createOffer()
+        .then(offer => connections[roomId].setLocalDescription(offer))
+        .then(() => {
+            alert(`Подключение к ${roomId} установлено`);
+            // Здесь должен быть обмен SDP с удаленным участником
+        })
+        .catch(err => console.error('Ошибка подключения:', err));
+}
