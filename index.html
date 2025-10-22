@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>WebRTC Контроль</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Кнопка подключения -->
+        <button id="connectBtn">Подключиться по WebRTC</button>
+        
+        <!-- Кнопки управления -->
+        <div class="controls">
+            <button id="muteBtn">Выключить наушники</button>
+            <button id="micToggle">Включить микрофон</button>
+        </div>
+        
+        <!-- Индикатор микрофона -->
+        <div class="mic-status">
+            <span id="micStatus">Микрофон: Отключен</span>
+            <progress id="micProgress" value="0" max="1"></progress>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
